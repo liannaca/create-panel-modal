@@ -1,11 +1,3 @@
-//   let counter = 0;
-//   let id = '';
-//   function useGemerateId(e) {
-//     if (e.target.classList.contains('hs-dropdown-custom-icon-trigger')) {
-//       id = counter++;
-//     }
-
-
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -39,6 +31,12 @@ function App() {
     }
   }, [location.pathname]);
 
+  //   let counter = 0;
+  //   let id = '';
+  //   function useGemerateId(e) {
+  //     if (e.target.classList.contains('hs-dropdown-custom-icon-trigger')) {
+  //       id = counter++;
+  //     }
 
 
   return (
@@ -94,7 +92,7 @@ function App() {
                   <td className="p-3">{panel['version']}</td>
                   <td className="p-3">
                     <div className="hs-dropdown relative inline-flex">
-                      {/* id="hs-dropdown-custom-icon-trigger" */}
+                      {/* id="hs-dropdown-custom-icon-trigger" БЫЛО ИЗНАЧАЛЬНО ВМЕСТО ID НИЖЕ. ЗАМЕНИЛА НА СВОЕ ID*/}
                       <button
                         id={genereteId('id')}
                         onClick={(e) => {
