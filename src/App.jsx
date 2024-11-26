@@ -3,15 +3,11 @@ import { useLocation } from 'react-router-dom';
 
 import "preline/preline";
 import { CreatePanelModal } from "./CreatePanelModal"; //+
-import useGenerateId from './Hooks/useGenerateId';
 
 function App() {
   const location = useLocation();
   const [panels, setPanels] = useState('');
   const [showCreatePanelModal, setShowCreatePanelModal] = useState(false); //+
-
-  const genereteId = useGenerateId();
-  const [uniqId, setUniqId] = useState('');
 
   useEffect(() => {
     fetch('http://reachhold.com:8080/panelEntities?page=0&size=100', {
@@ -30,14 +26,6 @@ function App() {
       window.HSStaticMethods.autoInit(); // Автоматическая инициализация Preline. В функции useEffect добавлена проверка на существование window.HSStaticMethods, чтобы избежать ошибок, если этот объект не определён. Это улучшает безопасность кода.
     }
   }, [location.pathname]);
-
-  //   let counter = 0;
-  //   let id = '';
-  //   function useGemerateId(e) {
-  //     if (e.target.classList.contains('hs-dropdown-custom-icon-trigger')) {
-  //       id = counter++;
-  //     }
-
 
   return (
     <div className="bg-gray-900 text-white">
@@ -58,7 +46,7 @@ function App() {
               <div>
                 <button type="button"
                   className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-focus-management-modal"
-                  onClick={() => setShowCreatePanelModal(true)}>+ Створити</button>
+                  onClick={() => setShowCreatePanelModal(true)}>+Створити</button>
                 {showCreatePanelModal && <CreatePanelModal onClose={() => setShowCreatePanelModal(false)} />}
               </div>
             </div>
@@ -91,18 +79,15 @@ function App() {
                   <td className="p-3">{panel['url']}</td>
                   <td className="p-3">{panel['version']}</td>
                   <td className="p-3">
+
                     <div className="hs-dropdown relative inline-flex">
-                      {/* id="hs-dropdown-custom-icon-trigger" БЫЛО ИЗНАЧАЛЬНО ВМЕСТО ID НИЖЕ. ЗАМЕНИЛА НА СВОЕ ID*/}
-                      <button
-                        id={genereteId('id')}
-                        onClick={(e) => {
-                          setUniqId(e.target.value)
-                        }} value={uniqId}
-                        type="button" className="hs-dropdown-toggle flex justify-center items-center size-9 text-sm font-semibold  text-gray-800 shadow-sm disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-white dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
-                        aria-haspopup="menu"
-                        aria-label="Dropdown">
+
+                      <button id={panel['id']} type="button" className="hs-dropdown-toggle flex justify-center items-center size-9 text-sm font-semibold  text-gray-800 shadow-sm disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-white dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
+                        aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+
                         <svg className="flex-none size-4 text-gray-600 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="1" /><circle cx="12" cy="5" r="1" /><circle cx="12" cy="19" r="1" /></svg></button>
-                      <div className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-40 bg-gray-900 shadow-md rounded-lg mt-2 dark:bg-neutral-800 border border-white" role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-custom-icon-trigger">
+
+                      <div className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-40 bg-gray-900 shadow-md rounded-lg mt-2 dark:bg-neutral-800 border border-white" role="menu" aria-orientation="vertical" aria-labelledby={panel['id']}>
 
                         <div className="p-1 space-y-0.5">
                           {/* Кнопка для открытия offcanvas */}
