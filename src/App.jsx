@@ -2,12 +2,18 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import "preline/preline";
-import { CreatePanelModal } from "./CreatePanelModal"; //+
+import { CreatePanelModal } from "./Components/CreatePanelModal";
+import { SiteClickAlart } from './Components/SiteClickAlart';
 
 function App() {
   const location = useLocation();
   const [panels, setPanels] = useState('');
-  const [showCreatePanelModal, setShowCreatePanelModal] = useState(false); //+
+  const [showCreatePanelModal, setShowCreatePanelModal] = useState(false);
+
+  const [showSiteClickAlart, setShowSiteClickAlart] = useState(false);
+
+
+
 
   useEffect(() => {
     fetch('http://reachhold.com:8080/panelEntities?page=0&size=100', {
@@ -18,12 +24,12 @@ function App() {
     })
       .then(response => response.json())
       .then(data => setPanels(data))
+      .then(() => window.HSStaticMethods.autoInit())
       .catch(er => console.log(er))
   }, [])
 
   useEffect(() => {
     if (window.HSStaticMethods) {
-      window.HSStaticMethods.autoInit(); // Автоматическая инициализация Preline. В функции useEffect добавлена проверка на существование window.HSStaticMethods, чтобы избежать ошибок, если этот объект не определён. Это улучшает безопасность кода.
     }
   }, [location.pathname]);
 
@@ -92,7 +98,12 @@ function App() {
                         <div className="p-1 space-y-0.5">
                           {/* Кнопка для открытия offcanvas */}
                           <button type="button" className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sx text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" aria-controls="hs-offcanvas-right" data-hs-overlay="#hs-offcanvas-right">Користувачі</button>
-                          <button type="button" className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sx text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" aria-controls="hs-offcanvas-right" data-hs-overlay="#hs-offcanvas-right">Сайти</button>
+
+                          <button type="button"
+                            className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sx text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" aria-controls="hs-offcanvas-right"
+                            data-hs-overlay="#hs-offcanvas-right" onClick={() => setShowSiteClickAlart(true)}>Сайти</button>
+
+
                           <button type="button" className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sx text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" aria-controls="hs-offcanvas-right" data-hs-overlay="#hs-offcanvas-right">Налаштування</button>
                           <button type="button" className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sx text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" aria-controls="hs-offcanvas-right" data-hs-overlay="#hs-offcanvas-right">Змінити стан</button>
                         </div>
@@ -104,6 +115,44 @@ function App() {
           </tbody>
         </table>
       </main>
+
+      {showSiteClickAlart && <SiteClickAlart onClick={() => setShowSiteClickAlart(false)} />}
+
+      {/* Site Click Alart */}
+      {/* {showSiteClickAlart && (
+        <div className="flex flex-col bg-gray-800 shadow-sm rounded-xl pointer-events-auto border border-white-10 fixed inset-0 z-50">
+          <div className="p-4 overflow-y-auto space-y-4">
+            <div>
+              <label
+                htmlFor="input-label"
+                className="block text-sm font-medium mb-2"
+              >
+                Name
+              </label>
+              <input
+                id="input-label"
+                name="name"
+                className="py-3 px-4 block w-full bg-gray-700 text-white border-gray-900 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:placeholder-neutral-500"
+                placeholder="placeholder"
+                autoFocus
+              />
+            </div>
+            <div className="flex justify-end space-x-3">
+              <button
+                type="button"
+                className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-white-10 bg-gray-800 text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700" >
+                Закрити
+              </button>
+              <button
+                type="button"
+                className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" onClick={() => setSiteClickAlart(false)}>
+                Зберегти
+              </button>
+            </div>
+          </div>
+        </div>
+      )} */}
+
 
       {/* Offcanvas */}
       <div id="hs-offcanvas-right" className=" bg-gray-900 border border-l-4 border-[rgba(75,85,99,0.5)] hs-overlay hs-overlay-open:translate-x-0 hidden translate-x-full fixed top-0 end-0 transition-all duration-300 transform h-full w-[700px] z-[80] border-s dark:bg-neutral-800 dark:border-neutral-700" role="dialog" tabIndex="-1" aria-labelledby="hs-offcanvas-right-label">
@@ -126,6 +175,7 @@ function App() {
                     <tr className="text-left">
                       <th className="p-3">STATUS</th>
                       <th className="p-3">DOMAIN</th>
+                      <th className="p-3">VERSION</th>
                       <th className="p-3">ACTIONS</th>
                     </tr>
                   </thead>
@@ -137,7 +187,10 @@ function App() {
                         </svg>
                       </td>
                       <td className="p-3">stage.reachhold.com</td>
-                      <td className="p-3">Змінити стан</td>
+                      <td className="p-3">1.2</td>
+                      <td className="p-3">
+                        <button type="button" className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sx text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" aria-controls="hs-offcanvas-right" data-hs-overlay="#hs-offcanvas-right">Змінити стан</button>
+                      </td>
                     </tr>
                     <tr className="border-b border-gray-600">
                       <td className="p-3">
@@ -146,15 +199,21 @@ function App() {
                         </svg>
                       </td>
                       <td className="p-3">1</td>
-                      <td className="p-3">Змінити стан</td>
+                      <td className="p-3">1.2</td>
+                      <td className="p-3">
+                        <button type="button" className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sx text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" aria-controls="hs-offcanvas-right" data-hs-overlay="#hs-offcanvas-right">Змінити стан</button>
+                      </td>
                     </tr>
                   </tbody>
+
                 </table>
               </div>
             </div>
           </div>
+
         </div>
         {/* End of the Modal */}
+
       </div>
     </div>
 
