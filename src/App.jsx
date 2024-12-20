@@ -88,7 +88,7 @@ function App() {
                         <button id={panel['id']} type="button" className="hs-dropdown-toggle flex justify-center items-center size-9 text-sm font-semibold  text-gray-800 shadow-sm disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-white dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                           <svg className="flex-none size-4 text-gray-600 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="1" /><circle cx="12" cy="5" r="1" /><circle cx="12" cy="19" r="1" /></svg></button>
                         <div className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-40 bg-gray-900 shadow-md rounded-lg mt-2 dark:bg-neutral-800 border border-white" role="menu" aria-orientation="vertical" aria-labelledby={panel['id']}>
-                          <div className="p-1 space-y-0.5">
+                          <div className="p-2 space-y-0.5">
                             {/* Кнопка для открытия offcanvas */}
                             <button type="button" className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sx text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" aria-controls="hs-offcanvas-right-users" data-hs-overlay="#hs-offcanvas-right-users">Користувачі</button>
                             <button type="button" className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sx text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" aria-controls="hs-offcanvas-right-sites" data-hs-overlay="#hs-offcanvas-right-sites">Сайти</button>
@@ -110,5 +110,6 @@ function App() {
         {showSiteClickAlart && <SiteClickAlart onClose={() => setShowSiteClickAlart(false)} />}
       </div>
   );
+
 }
 export default App;
