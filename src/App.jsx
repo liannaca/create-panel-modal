@@ -110,6 +110,5 @@ function App() {
         {showSiteClickAlart && <SiteClickAlart onClose={() => setShowSiteClickAlart(false)} />}
       </div>
   );
-
 }
 export default App;
