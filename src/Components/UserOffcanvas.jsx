@@ -11,7 +11,6 @@ export function UserOffcanvas({ setShowSiteClickAlart }) {
                                 <div className="flex items-center space-x-2">
                                     <h1 className="text-white pl-3 ml-4">Користувачі</h1>
                                 </div>
-
                             </div>
                         </div>
                         <div className="pt-2 w-full ml-4">
