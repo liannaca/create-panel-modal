@@ -9,12 +9,13 @@ export function SiteOffcanvas({ setShowSiteClickAlart }) {
                         <div className='rounded-lg bg-gray-800'>
                             <div className="relative flex justify-between h-16 w-[600px]">
                                 <div className="flex items-center space-x-2">
-                                    <h1 className="text-white pl-3 ml-4">Сайти</h1>
+                                    <h1 className="text-white ml-4">Сайти</h1>
                                 </div>
                                 <div className='p-3'>
-                                    <input type="text" className="py-2 px-20 rounded-lg bg-gray-900 w-[450px]"
+                                    <input type="text" className="py-2 px-20 rounded-lg bg-gray-900 w-[400px]"
                                         placeholder="Пошук" readOnly />
                                 </div>
+                                <button className='w-28 my-3 bg-blue-600 text-white rounded-xl text-s text-nowrap'>+ Створити</button>
                             </div>
                         </div>
                         <div className="pt-2 w-full ml-4">
