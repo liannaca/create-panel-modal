@@ -37,6 +37,7 @@ export function CreateSiteModal({ onClose }) {
         onClose()
     }
 
+
     return (
         <div onClick={(e) => handleBackdropClick(e)}
             className="hs-overlay size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto"
