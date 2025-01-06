@@ -1,4 +1,11 @@
-export function SiteOffcanvas({ setShowSiteClickAlart }) {
+import {useState} from "react";
+import {CreatePanelModal} from "./CreatePanelModal";
+import {CreateSiteModal} from "./CreateSiteModal";
+
+export function SiteOffcanvas({ setShowSiteClickAlart, panel }) {
+
+    const [showCreateSiteModal, setShowCreateSiteModal] = useState(false);
+
     return (
         <div id="hs-offcanvas-right-sites"
             className=" bg-gray-900 border border-l-4 border-[rgba(75,85,99,0.5)] hs-overlay hs-overlay-open:translate-x-0 hidden translate-x-full fixed top-0 end-0 transition-all duration-300 transform h-full w-[700px] z-[80] border-s dark:bg-neutral-800 dark:border-neutral-700"
@@ -15,7 +22,8 @@ export function SiteOffcanvas({ setShowSiteClickAlart }) {
                                     <input type="text" className="py-2 px-20 rounded-lg bg-gray-900 w-[400px]"
                                         placeholder="Пошук" readOnly />
                                 </div>
-                                <button className='w-28 my-3 bg-blue-600 text-white rounded-xl text-s text-nowrap'>+ Створити</button>
+                                <button className='w-28 my-3 bg-blue-600 text-white rounded-xl text-s text-nowrap' onClick={()=>setShowCreateSiteModal(true)}>+ Створити </button>
+                                {showCreateSiteModal && <CreateSiteModal onClose={() => setShowCreateSiteModal(false)} />}
                             </div>
                         </div>
                         <div className="pt-2 w-full ml-4">

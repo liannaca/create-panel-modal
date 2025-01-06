@@ -47,38 +47,29 @@ export function CreateSiteModal({ onClose }) {
                     <div className="p-4 overflow-y-auto space-y-4">
                         <div>
                             <label htmlFor="input-label"
-                                className="block text-sm font-medium mb-2 ">Name</label>
+                                   className="block text-sm font-medium mb-2 ">Name</label>
                             <input id="input-label"
-                                onChange={handleChange}
-                                name='name'
-                                className="py-3 px-4 block w-full bg-gray-700 text-white border-gray-900 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:placeholder-neutral-500 "
-                                placeholder="placeholder" autoFocus />
+                                   onChange={handleChange}
+                                   name='name'
+                                   className="py-3 px-4 block w-full bg-gray-700 text-white border-gray-900 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:placeholder-neutral-500 "
+                                   placeholder="placeholder" autoFocus/>
                         </div>
                         <div>
                             <label htmlFor="input-host"
-                                className="block text-sm font-medium mb-2 ">Host</label>
+                                   className="block text-sm font-medium mb-2 ">Domain</label>
                             <input id="input-host"
-                                onChange={handleChange}
-                                name='host'
-                                className="py-3 px-4 block w-full bg-gray-700 text-white border-gray-900 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:placeholder-neutral-500 "
-                                placeholder="placeholder" />
+                                   onChange={handleChange}
+                                   name='host'
+                                   className="py-3 px-4 block w-full bg-gray-700 text-white border-gray-900 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:placeholder-neutral-500 "
+                                   placeholder="placeholder"/>
                         </div>
                         <div>
-                            <label htmlFor="input-version"
-                                className="block text-sm font-medium mb-2 ">Version</label>
-                            <input name='version' onChange={handleChange}
-                                id="input-version"
-                                className="py-3 px-4 block w-full bg-gray-700 text-white border-gray-900 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:placeholder-neutral-500 "
-                                placeholder="Version" />
-                        </div>
-                        <div>
-                            <label htmlFor="input-admin-version"
-                                className="block text-sm font-medium mb-2 ">Admin Version</label>
-                            <input id="input-admin-version"
-                                onChange={handleChange}
-                                name='adminVersion'
-                                className="py-3 px-4 block w-full bg-gray-700 text-white border-gray-900 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:placeholder-neutral-500 "
-                                placeholder="Admin Version" />
+                            <label htmlFor="input-host"
+                                   className="block text-sm font-medium mb-2 ">Type</label>
+                            <select
+                                className="py-3 px-4 block w-full bg-gray-700 text-white border-gray-900 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:placeholder-neutral-500 ">
+                                <option selected="">SITE</option>
+                            </select>
                         </div>
                     </div>
                     <div className="flex justify-between items-center gap-x-2 py-3 px-4 dark:border-neutral-700">

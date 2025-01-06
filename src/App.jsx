@@ -107,6 +107,7 @@ function App() {
         <SiteOffcanvas setShowSiteClickAlart={(bool) => setShowSiteClickAlart(bool)}></SiteOffcanvas>
         <UserOffcanvas setShowSiteClickAlart={(bool) => setShowSiteClickAlart(bool)}></UserOffcanvas>
 
+
         {showSiteClickAlart && <SiteClickAlart onClose={() => setShowSiteClickAlart(false)} />}
       </div>
   );
