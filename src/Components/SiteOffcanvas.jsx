@@ -1,9 +1,8 @@
 import {useState} from "react";
-import {CreatePanelModal} from "./CreatePanelModal";
 import {CreateSiteModal} from "./CreateSiteModal";
 
 export function SiteOffcanvas({ setShowSiteClickAlart, panel }) {
-
+    console.log("SELECTED NEW PANEL" , panel)
     const [showCreateSiteModal, setShowCreateSiteModal] = useState(false);
 
     return (
@@ -13,6 +12,7 @@ export function SiteOffcanvas({ setShowSiteClickAlart, panel }) {
             <div className="p-4 bg-gray-900">
                 <div className="container bg-gray-900 mx-auto rounded-md px-3 mt-3">
                     <div className="mx-auto max-w-7xl px-2">
+                        <h2>{panel && panel['url']}</h2>
                         <div className='rounded-lg bg-gray-800'>
                             <div className="relative flex justify-between h-16 w-[600px]">
                                 <div className="flex items-center space-x-2">
@@ -23,7 +23,7 @@ export function SiteOffcanvas({ setShowSiteClickAlart, panel }) {
                                         placeholder="Пошук" readOnly />
                                 </div>
                                 <button className='w-28 my-3 bg-blue-600 text-white rounded-xl text-s text-nowrap' onClick={()=>setShowCreateSiteModal(true)}>+ Створити </button>
-                                {showCreateSiteModal && <CreateSiteModal onClose={() => setShowCreateSiteModal(false)} />}
+                                {showCreateSiteModal && <CreateSiteModal panel={panel} onClose={() => setShowCreateSiteModal(false)} />}
                             </div>
                         </div>
                         <div className="pt-2 w-full ml-4">

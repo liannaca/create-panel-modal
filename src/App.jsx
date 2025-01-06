@@ -11,6 +11,7 @@ function App() {
   const location = useLocation();
   const [panels, setPanels] = useState('');
   const [showCreatePanelModal, setShowCreatePanelModal] = useState(false);
+  const [selectedPanel, setSelectedPanel] = useState();
 
   const [showSiteClickAlart, setShowSiteClickAlart] = useState(false);
 
@@ -90,8 +91,8 @@ function App() {
                         <div className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-40 bg-gray-900 shadow-md rounded-lg mt-2 dark:bg-neutral-800 border border-white" role="menu" aria-orientation="vertical" aria-labelledby={panel['id']}>
                           <div className="p-2 space-y-0.5">
                             {/* Кнопка для открытия offcanvas */}
-                            <button type="button" className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sx text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" aria-controls="hs-offcanvas-right-users" data-hs-overlay="#hs-offcanvas-right-users">Користувачі</button>
-                            <button type="button" className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sx text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" aria-controls="hs-offcanvas-right-sites" data-hs-overlay="#hs-offcanvas-right-sites">Сайти</button>
+                            <button onClick={() => setSelectedPanel(panel)} type="button" className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sx text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" aria-controls="hs-offcanvas-right-users" data-hs-overlay="#hs-offcanvas-right-users">Користувачі</button>
+                            <button onClick={() => setSelectedPanel(panel)} type="button" className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sx text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" aria-controls="hs-offcanvas-right-sites" data-hs-overlay="#hs-offcanvas-right-sites">Сайти</button>
                             <button type="button" className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sx text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" aria-controls="hs-offcanvas-right-settings" data-hs-overlay="#hs-offcanvas-right-settings">Налаштування</button>
                             <button type="button" className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sx text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" aria-controls="hs-offcanvas-right-changes" data-hs-overlay="#hs-offcanvas-right-changes">Змінити стан</button>
                           </div>
@@ -104,7 +105,7 @@ function App() {
           </table>
         </main>
         {/* Offcanvas */}
-        <SiteOffcanvas setShowSiteClickAlart={(bool) => setShowSiteClickAlart(bool)}></SiteOffcanvas>
+        <SiteOffcanvas panel={selectedPanel} setShowSiteClickAlart={(bool) => setShowSiteClickAlart(bool)}></SiteOffcanvas>
         <UserOffcanvas setShowSiteClickAlart={(bool) => setShowSiteClickAlart(bool)}></UserOffcanvas>
 
 

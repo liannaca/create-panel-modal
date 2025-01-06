@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-export function CreateSiteModal({ onClose }) {
+export function CreateSiteModal({ onClose, panel }) {
 
-    const [data, setData] = useState('');
+    const [data, setData] = useState({});
 
     function handleChange(e) {
         setData({
@@ -12,11 +12,20 @@ export function CreateSiteModal({ onClose }) {
     }
 
     const submitForm = () => {
-        fetch(`http://reachhold.com:8080/dashboard/panel?host=${data['host']}&version=${data['version']}&adminVersion=${data['adminVersion']}&name=${data['name']}&deploy=false`, {
+        let body = {
+            ...data,
+            type: document.getElementById('type').value,
+            panelId: panel.id,
+            options: ''
+        }
+        console.log(body)
+        fetch(`http://reachhold.com:8080/api/space`, {
             method: 'POST',
             headers: new Headers({
-                'Authorization': 'Basic ' + btoa('dashboard:qwe565656')
-            })
+                'Authorization': 'Basic ' + btoa('dashboard:qwe565656'),
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify(body)
         })
             .then(response => response.json())
             .then(data => {
@@ -45,6 +54,7 @@ export function CreateSiteModal({ onClose }) {
             <div className="mt-7 opacity-100 duration-500 ease-out transition-all w-[400px] m-3 sm:mx-auto">
                 <div className="flex flex-col bg-gray-800 shadow-sm rounded-xl pointer-events-auto border border-white-10">
                     <div className="p-4 overflow-y-auto space-y-4">
+                        {panel && panel['id']}
                         <div>
                             <label htmlFor="input-label"
                                    className="block text-sm font-medium mb-2 ">Name</label>
@@ -59,7 +69,7 @@ export function CreateSiteModal({ onClose }) {
                                    className="block text-sm font-medium mb-2 ">Domain</label>
                             <input id="input-host"
                                    onChange={handleChange}
-                                   name='host'
+                                   name='domain'
                                    className="py-3 px-4 block w-full bg-gray-700 text-white border-gray-900 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:placeholder-neutral-500 "
                                    placeholder="placeholder"/>
                         </div>
@@ -67,8 +77,12 @@ export function CreateSiteModal({ onClose }) {
                             <label htmlFor="input-host"
                                    className="block text-sm font-medium mb-2 ">Type</label>
                             <select
+                                id='type'
+                                name='type'
+                                onChange={handleChange}
+                                defaultValue='SITE'
                                 className="py-3 px-4 block w-full bg-gray-700 text-white border-gray-900 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:placeholder-neutral-500 ">
-                                <option selected="">SITE</option>
+                                <option value='SITE'>SITE</option>
                             </select>
                         </div>
                     </div>
