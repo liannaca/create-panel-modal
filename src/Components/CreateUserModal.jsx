@@ -1,5 +1,5 @@
 import { useState } from "react";
-export function CreateSiteModal({ onClose, panel }) {
+export function CreateUserModal({ onClose, panel }) {
     const [data, setData] = useState({});
 
     function handleChange(e) {

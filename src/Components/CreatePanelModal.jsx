@@ -1,7 +1,5 @@
 import { useState } from "react";
-
 export function CreatePanelModal({ onClose }) {
-
     const [data, setData] = useState('');
 
     function handleChange(e) {
